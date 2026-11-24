@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUPITER GPT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="wrap">
+        <h1>🚀 JUPITER GPT</h1>
+        <p>AI YouTube Shorts Generator</p>
+
+        <h2>अपनी वीडियो अपलोड करें</h2>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form action="/create" method="POST" enctype="multipart/form-data">
+            <label>वीडियो चुनें</label>
+            <input type="file" name="video" accept="video/*" required>
+
+            <label>कितने Shorts बनाने हैं?</label>
+            <select name="count">
+                <option value="3">3 Shorts</option>
+                <option value="5" selected>5 Shorts</option>
+                <option value="7">7 Shorts</option>
+                <option value="10">10 Shorts</option>
+            </select>
+
+            <label>हर Short की अवधि</label>
+            <select name="seconds">
+                <option value="15">15 सेकंड</option>
+                <option value="30">30 सेकंड</option>
+                <option value="45" selected>45 सेकंड</option>
+                <option value="60">60 सेकंड</option>
+                <option value="90">90 सेकंड</option>
+            </select>
+
+            <button type="submit">Generate Shorts</button>
+        </form>
+
+        <p class="note">
+            केवल उन्हीं वीडियो का उपयोग करें जिन्हें एडिट करने का अधिकार आपके पास है।
+            फिलहाल YouTube लिंक से डाउनलोड की सुविधा उपलब्ध नहीं है।
+        </p>
+    </main>
+</body>
+</html>
