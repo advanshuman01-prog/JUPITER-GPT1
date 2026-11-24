@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUPITER GPT Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="wrap">
+    <h1>🚀 JUPITER GPT</h1>
+    <h2>आपके Shorts तैयार हैं!</h2>
+
+    <a class="download" href="/download/{{ bundle }}">
+        सभी Shorts ZIP डाउनलोड करें
+    </a>
+
+    {% for c in clips %}
+    <section class="clip">
+        <h3>Short {{ loop.index }}</h3>
+        <p>वीडियो समय: {{ c.start }} से {{ c.end }} सेकंड</p>
+
+        <a href="/download/{{ c.name }}">MP4 डाउनलोड करें</a>
+
+        <h4>Title</h4>
+        <p>{{ seo[loop.index0].title }}</p>
+
+        <h4>Description</h4>
+        <p>{{ seo[loop.index0].description }}</p>
+
+        <h4>Hashtags</h4>
+        <p>{{ seo[loop.index0].hashtags }}</p>
+    </section>
+    {% endfor %}
+
+    <a href="/">← वापस जाएँ</a>
+</main>
+</body>
+</html>
